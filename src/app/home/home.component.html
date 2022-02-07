@@ -6,8 +6,8 @@
                 <div class="card-body">
                   <p class="card-text text-secondary" style="font-weight: bold;">{{item.title}}</p>
                   <div style="display: flex;justify-content: space-between;align-items: center;"> 
-                    <p class="card-text text-secondary">{{item.price | currency:'INR'}} </p>
-                    <button class="btn btn-info text-light">Add to Cart</button>
+                    <p class="card-text text-secondary">{{item.price| currency:'INR'}} </p>
+                    <button class="btn btn-info text-light" (click)="addToCart(item)">Add to Cart</button>
                   </div>
                 </div>
             </div>

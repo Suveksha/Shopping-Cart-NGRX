@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './state/cart.reducer';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,16 +23,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreDevtoolsModule.instrument({
-      maxAge: false,
-      logOnly: false,
-      autoPause: true,
-      features: {
-        pause: false,
-        lock: true,
-        persist: true
-      }
-    })
+    StoreModule.forRoot({cartReducer:cartReducer}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, name:'Cart' }),
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
