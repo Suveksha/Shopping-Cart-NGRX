@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Item } from '../item.model';
-import { countSelector, itemSelector } from '../state/cart.selector';
+import { itemSelector } from '../state/cart.selector';
 import { cartState } from '../state/cart.state';
 
 @Component({
@@ -9,26 +9,37 @@ import { cartState } from '../state/cart.state';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
 
-  constructor(private store:Store<cartState>) { }
-  itemObj:Item|null=null
-  countItem:number=0
 
-  items$=this.store.select('item')
+export class CartComponent implements OnInit{
+
+  constructor(private store:Store<cartState[]>) { }
+  
+  cartObjArr:cartState[]|null=null
+  totalCost:number=0
+  showBool:boolean=true
+  quantity:number=1
   
   ngOnInit(): void {
-    // this.store.pipe(select(itemSelector)).subscribe(data=>{
-    //   this.itemObj=data
-    //   console.log("Item=",this.itemObj)
-    // })
-    
-    // this.store.pipe(select(countSelector)).subscribe(data=>{
-    //   this.countItem=data
-    //   console.log("Count=",this.countItem)
-    // })
-
-
+    this.store.pipe(select(itemSelector)).subscribe(data=>{
+      this.cartObjArr=[...data]
+      console.log("Cart Arr",this.cartObjArr)
+      if(this.cartObjArr.length>0)
+      this.showBool=false
+    });
   }
 
+  decrement(item:Item|any)
+  {
+   this.quantity=item.quantity
+   this.quantity--
+   console.log(this.quantity)
+  }
+
+  increment(item:Item|any)
+  {
+   this.quantity=item.quantity
+   this.quantity++
+   console.log(this.quantity)
+  }
 }

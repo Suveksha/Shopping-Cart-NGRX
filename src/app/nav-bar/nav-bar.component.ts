@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { itemSelector } from '../state/cart.selector';
+import { cartState } from '../state/cart.state';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private store:Store<cartState[]>) { }
+  count:number=0
   ngOnInit(): void {
+    this.store.pipe(select(itemSelector)).subscribe(data=>{
+      this.count=data.length
+    })
   }
 
 }

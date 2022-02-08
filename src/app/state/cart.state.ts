@@ -1,10 +1,9 @@
 import { Item } from "../item.model";
 
 export interface cartState{
-    count:number,
+    quantity:number,
     item:Item|null
 }
 
-export const initialState:cartState[]=[
 
-]
+export const initialState:cartState[]=[]
