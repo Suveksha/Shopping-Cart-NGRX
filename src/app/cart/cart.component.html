@@ -5,26 +5,59 @@
     </div>
 </div>
 
-<div class="container border mt-5 p-5 col-sm-8 shadow" *ngIf="!showBool">
-    <table class="table table-stripped">
-       <thead>
-           <tr class="text-center">
-            <th class="bg-info text-light">PRODUCT NAME</th>
-            <th class="bg-info text-light">PRODUCT DESCRIPTION</th>
-            <th class="bg-info text-light">PRODUCT PRICE</th>
-            <th class="bg-info text-light">PRODUCT QUANTITY</th>
-           </tr>
-       </thead>
-        <tbody>
-            <tr *ngFor="let itemObj of cartObjArr">
-                <td class="text-center" style="font-weight:bold;">{{itemObj.item?.title}}</td>
-                <td>{{itemObj.item?.description}}</td>
-                <td class="text-center">{{itemObj.item?.price}}</td>
-                <td class="text-center">{{quantity}}<br>
-                <button class="btn btn-info btn-sm" (click)="decrement(itemObj.item)">-</button>&nbsp;
-                <button class="btn btn-info btn-sm" (click)="increment(itemObj.item)">+</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="col-12"*ngIf="!showBool">
+    <div class="row">
+        <div class="container border mt-5 p-5 col-sm-6 shadow">
+            <table class="table table-stripped">
+               <thead>
+                   <tr class="text-center">
+                    <th class="bg-info text-light">PRODUCT NAME</th>
+                    <th class="bg-info text-light">PRODUCT DESCRIPTION</th>
+                    <th class="bg-info text-light">PRODUCT PRICE</th>
+                    <th class="bg-info text-light">PRODUCT QUANTITY</th>
+                   </tr>
+               </thead>
+                <tbody>
+                    <tr *ngFor="let itemObj of cartObjArr">
+                        <td class="text-center" style="font-weight:bold;">{{itemObj.item?.title}}</td>
+                        <td>{{itemObj.item?.description}}</td>
+                        <td class="text-center">{{itemObj.item?.price}}</td>
+                        <td class="text-center">{{quantity}}<br>
+                        <button class="btn btn-info btn-sm" (click)="decrement(itemObj.item)">-</button>&nbsp;
+                        <button class="btn btn-info btn-sm" (click)="increment(itemObj.item)">+</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container border mt-5 p-5 col-sm-4 shadow" style="max-height: 70vh;">
+            <div class="row">
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>PRODUCT NAME</th>
+                            <th>QUANTITY</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let itemObj of cartObjArr" class="text-center">
+                            <td>{{itemObj.item?.title}}</td>
+                            <td>{{itemObj.quantity}}</td>
+                            <!-- <td>{{itemObj.item?.price | multiplyPipe: itemObj.quantity}}</td> -->
+                            <td>{{priceValue(itemObj)}}</td>
+                        </tr>
+
+                        <tr class="text-center">
+                            <td class="text-info" style="font-weight:bold; font-size: 1.2rem;">Total</td>
+                            <td></td>
+                            <td>{{total()}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+

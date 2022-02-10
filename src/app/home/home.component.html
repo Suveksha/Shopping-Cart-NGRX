@@ -2,7 +2,7 @@
    <div class="row mt-3">
         <div class="col-md-4 my-5" *ngFor="let item of items">
             <div class="card" style="width: 18rem;">
-                <img src={{item.itemUrl}} class="card-img-top" alt={{item.title}} style="height:25rem;" >
+                <img src={{item.itemUrl}} class="card-img-top" alt={{item.title}} style="height:25rem;cursor:pointer;" [routerLink]="['/details',item.id]" (click)="getDetails(item)">
                 <div class="card-body">
                   <p class="card-text text-secondary" style="font-weight: bold;">{{item.title}}</p>
                   <div style="display: flex;justify-content: space-between;align-items: center;"> 

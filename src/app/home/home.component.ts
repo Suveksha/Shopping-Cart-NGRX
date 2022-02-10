@@ -5,6 +5,7 @@ import { ShopingListService } from '../shoping-list.service';
 import { addToCart, ADD_TO_CART } from '../state/cart.action';
 import { cartState } from '../state/cart.state';
 import { itemSelector } from '../state/cart.selector';
+import { getDetails } from '../state/details.action';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { itemSelector } from '../state/cart.selector';
 export class HomeComponent implements OnInit {
 
   constructor(private shoppingListService:ShopingListService,
-    private store:Store<cartState[]>) { }
+    private store:Store<cartState[]>,
+    private storeDetails:Store<Item>) { }
 
   ngOnInit(): void {
   }
@@ -40,16 +42,10 @@ export class HomeComponent implements OnInit {
 
     console.log("Item obj=", cartObj.item)
     this.store.dispatch(addToCart({cartObj:cartObj}))
+  }
 
-    // this.store.pipe(select(itemSelector)).subscribe(data=>{
-    //   if(data.length<=0)
-    //   {
-    //     console.log("Add to cart")
-    //     
-    //   }
-    //   else if(data.includes(cartObj)){
-    //     console.log("No Add to cart")
-    //   }
-    // })
+  getDetails(item:Item)
+  {
+    this.storeDetails.dispatch(getDetails({itemObj:item}))
   }
 }

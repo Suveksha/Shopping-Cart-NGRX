@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Item } from '../item.model';
 import { itemSelector } from '../state/cart.selector';
@@ -19,7 +19,9 @@ export class CartComponent implements OnInit{
   totalCost:number=0
   showBool:boolean=true
   quantity:number=1
-  
+  totalValue:any=0;
+  priceVal:any=0;
+  priceVals:any[]=[]
   ngOnInit(): void {
     this.store.pipe(select(itemSelector)).subscribe(data=>{
       this.cartObjArr=[...data]
@@ -32,14 +34,30 @@ export class CartComponent implements OnInit{
   decrement(item:Item|any)
   {
    this.quantity=item.quantity
-   this.quantity--
+   this.quantity=this.quantity-1
    console.log(this.quantity)
   }
 
   increment(item:Item|any)
   {
    this.quantity=item.quantity
-   this.quantity++
+   this.quantity=this.quantity+1
    console.log(this.quantity)
+  }
+
+  total()
+  {
+    this.priceVals.forEach(price=>{
+      this.totalValue+=price
+    })
+    console.log(this.priceVals)
+    return this.totalValue
+  }
+
+  priceValue(itemObj:any)
+  {
+    this.priceVal=itemObj.item.price*itemObj.quantity
+    this.priceVals.push(this.priceVal)
+    return this.priceVal
   }
 }

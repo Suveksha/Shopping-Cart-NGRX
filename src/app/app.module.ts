@@ -11,6 +11,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './state/cart.reducer';
 import { environment } from '../environments/environment';
+import { DetailsComponent } from './details/details.component';
+import { detailsReducer } from './state/details.reducer';
+import { reducers } from './state/app.state';
+import { MultiplyPipePipe } from './multiply-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,8 @@ import { environment } from '../environments/environment';
     HomeComponent,
     CartComponent,
     NotFoundComponent,
+    DetailsComponent,
+    MultiplyPipePipe,
   ],
   imports: [
     BrowserModule,

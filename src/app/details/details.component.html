@@ -1,0 +1,16 @@
+<div class="container border shadow mt-5 p-5 col-8">
+    <div class="row">
+        <div class="col-sm-5">
+            <img src={{itemObj?.itemUrl}} alt={{itemObj?.title}} style="height:50vh;">
+         </div>
+         <div class="col-6">
+             <div style="font-weight: bold; font-size:2rem;color:cornflowerblue">{{itemObj?.title}}</div>
+             <div class="text-secondary mt-3">{{itemObj?.description}}</div>
+             <div class="text-secondary mt-5 ml-5" style="font-size:1.5rem;">Price:&nbsp;<span style="font-weight:bold; color:cornflowerblue">{{itemObj?.price|currency:'INR'}}</span></div>
+             <div>
+                 <button class="btn btn-success mt-3" (click)="addToCart(itemObj)">Add To Cart</button>&nbsp;&nbsp;
+                 <button class="btn btn-info mt-3 text-light" routerLink="/cart">Go To Cart</button>
+            </div>
+         </div>
+    </div>
+</div>
